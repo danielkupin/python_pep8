@@ -1,16 +1,11 @@
 from fila_base import FilaBase
+from constantes import CODIGO_PRIORITARIA
 
 
 class FilaPrioritaria(FilaBase):
 
     def gera_senha_atual(self) -> None:
-        self.senha_atual = f'PR{self.codigo}'
-
-    def reseta_fila(self) -> None:
-        if self.codigo >= 100:
-            self.codigo = 0
-        else:
-            self.codigo += 1
+        self.senha_atual = f'{CODIGO_PRIORITARIA}{self.codigo}'
 
     def atualiza_fila(self) -> None:
         self.reseta_fila()
@@ -25,7 +20,9 @@ class FilaPrioritaria(FilaBase):
 
     def estatistica(self, dia: str, agencia: str, flag: str) -> dict:
         if flag != 'detail':
-            estatistica = {f'{agencia} - {dia} : {len(self.clientes_atendidos)}'}
+            estatistica = {
+                f'{agencia} - {dia}: {len(self.clientes_atendidos)}'
+            }
         else:
             estatistica = {}
             estatistica['dia'] = dia

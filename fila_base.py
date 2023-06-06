@@ -1,5 +1,7 @@
 import abc
 
+from constantes import MAX_SIZE, MIN_SIZE
+
 
 class FilaBase(metaclass=abc.ABCMeta):
     codigo: int = 0
@@ -7,12 +9,18 @@ class FilaBase(metaclass=abc.ABCMeta):
     clientes_atendidos = []
     senha_atual = None
 
+    def reseta_fila(self) -> None:
+        if self.codigo >= MAX_SIZE:
+            self.codigo = MIN_SIZE
+        else:
+            self.codigo += 1
+
     @abc.abstractmethod
     def chama_cliente(self, caixa):
         ...
 
     @abc.abstractmethod
-    def estatistica(self, dia, agencia, flag):
+    def estatistic(self, dia, agencia, flag):
         ...
 
     @abc.abstractmethod
