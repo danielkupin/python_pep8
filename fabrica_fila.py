@@ -1,6 +1,7 @@
 from constantes import TIPO_FILA_NORMAL, TIPO_FILA_PRIORITARIA
 from fila_prioritaria import FilaPrioritaria
 
+
 class FabricaFila:
     @staticmethod
     def pega_fila(tipo_fila):

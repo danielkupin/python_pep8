@@ -20,7 +20,7 @@ class FilaBase(metaclass=abc.ABCMeta):
         ...
 
     @abc.abstractmethod
-    def estatistic(self, dia, agencia, flag):
+    def estatistica(self, dia, agencia, flag):
         ...
 
     @abc.abstractmethod
