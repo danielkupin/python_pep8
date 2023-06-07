@@ -1,5 +1,11 @@
+from typing import Union
+
 from fila_base import FilaBase
 from constantes import CODIGO_PRIORITARIA
+from estatistica_resumida import EstatisticaResumida
+from estatistica_detalhada import EstatisticaDetalhada
+
+Classes = Union[EstatisticaResumida, EstatisticaDetalhada]
 
 
 class FilaPrioritaria(FilaBase):
@@ -18,18 +24,5 @@ class FilaPrioritaria(FilaBase):
 
         return f'Cliente atual: {cliente_atual}, dirija-se ao caixa: {caixa}'
 
-    def estatistica(self, dia: str, agencia: str, flag: str) -> dict:
-        if flag != 'detail':
-            estatistica = {
-                f'{agencia} - {dia}: {len(self.clientes_atendidos)}'
-            }
-        else:
-            estatistica = {}
-            estatistica['dia'] = dia
-            estatistica['agencia'] = agencia
-            estatistica['clientes_atendidos'] = self.clientes_atendidos
-            estatistica['quantidade_de_clientes_atendidos'] = (
-                len(self.clientes_atendidos)
-            )
-
-        return estatistica
+    def estatistica(self, retorna_estatistica: Classes) -> dict:
+        return retorna_estatistica.roda_estatistica(self.clientes_atendidos)

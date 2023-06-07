@@ -1,12 +1,14 @@
 import abc
+from typing import List
+
 
 from constantes import MAX_SIZE, MIN_SIZE
 
 
 class FilaBase(metaclass=abc.ABCMeta):
     codigo: int = 0
-    fila = []
-    clientes_atendidos = []
+    fila: List[str] = []
+    clientes_atendidos: List[str] = []
     senha_atual = None
 
     def reseta_fila(self) -> None:
@@ -20,7 +22,7 @@ class FilaBase(metaclass=abc.ABCMeta):
         ...
 
     @abc.abstractmethod
-    def estatistica(self, dia, agencia, flag):
+    def estatistica(self, flag):
         ...
 
     @abc.abstractmethod
